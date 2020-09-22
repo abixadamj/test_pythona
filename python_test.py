@@ -1,13 +1,20 @@
 # test wydajności Python w Windows i Linux
 
-__version__ = "0.01"
+__version__ = "0.02"
 
 # moduły wykorzystywane
 import sys
 try:
     import matplotlib.pyplot as plt
 except:
-    print("pip install matplotlib")
+    if sys.platform == 'linux':
+        print("dla Linux (Debian/Ubuntu/Mint):")
+        print("sudo apt install python3-pip")
+        print("sudo -H pip3 install matplotlib")
+    else:
+        print("dla windows:")
+        print("pip install matplotlib")
+        print("pip install msvc-runtime")
     sys.exit(status=2)
 
 # reszta to standardowe moduły
@@ -52,7 +59,7 @@ def zapis_wykresu(dane_x, dane_y, nazwa_pliku="wykres.png", nazwa_wykresu="Stand
     plt.title(nazwa_pliku)
     plt.grid()
     plt.tight_layout()
-    plt.savefig(nazwa_pliku, quality=90)
+    plt.savefig(nazwa_pliku)
     plt.close("all")
 
 
@@ -75,7 +82,8 @@ wyniki = {
 
 wyniki["sys.version"] = f"{sys.version} | hexversion {sys.hexversion} | api {sys.api_version}"
 wyniki["sys.version_info"] = str(sys.version_info)
-wyniki["os.uname"] = str(os.uname())
+if sys.platform == 'linux':
+    wyniki["os.uname"] = str(os.uname())
 
 print("Start testu:")
 for w in wyniki:
