@@ -36,3 +36,12 @@ lrwxrwxrwx  1 adasiek adasiek    24 wrz 22 18:32 plik_danych_windows.json -> Win
 ### Windows - zdecydowany przegrany:
 
 ### ![json_win](json_win.png)
+
+----
+
+Dodatkowo przetestujemy:
+
+`pip install pybench`
+
+https://openbenchmarking.org/test/pts/pyperformance
+
